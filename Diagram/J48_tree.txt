@@ -1,0 +1,165 @@
+J48 pruned tree
+------------------
+
+TCP_SYN <= 28
+|   WIRELEN_AVG <= 1392
+|   |   TCP_PSH <= 0
+|   |   |   TCP_SYN <= 0
+|   |   |   |   TCP_FIN <= 0
+|   |   |   |   |   TCP_RST <= 0
+|   |   |   |   |   |   IP_FLAG_AVG <= 1
+|   |   |   |   |   |   |   WIRELEN_AVG <= 61
+|   |   |   |   |   |   |   |   PAYLOAD_OFFSET_AVG <= 21: NORMAL (544.0)
+|   |   |   |   |   |   |   |   PAYLOAD_OFFSET_AVG > 21: Probe (20.0)
+|   |   |   |   |   |   |   WIRELEN_AVG > 61
+|   |   |   |   |   |   |   |   IP_TTL_AVG <= 51: NORMAL (2017.0)
+|   |   |   |   |   |   |   |   IP_TTL_AVG > 51
+|   |   |   |   |   |   |   |   |   IP_TTL_AVG <= 119
+|   |   |   |   |   |   |   |   |   |   WIRELEN_AVG <= 144: NORMAL (274.0)
+|   |   |   |   |   |   |   |   |   |   WIRELEN_AVG > 144
+|   |   |   |   |   |   |   |   |   |   |   IP_TTL_AVG <= 81
+|   |   |   |   |   |   |   |   |   |   |   |   IP_TTL_AVG <= 62: Probe (5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   IP_TTL_AVG > 62: NORMAL (37.0)
+|   |   |   |   |   |   |   |   |   |   |   IP_TTL_AVG > 81: Probe (6.0)
+|   |   |   |   |   |   |   |   |   IP_TTL_AVG > 119: NORMAL (1891.0/4.0)
+|   |   |   |   |   |   IP_FLAG_AVG > 1
+|   |   |   |   |   |   |   TCP_HLEN_AVG <= 6: NORMAL (939.0)
+|   |   |   |   |   |   |   TCP_HLEN_AVG > 6
+|   |   |   |   |   |   |   |   WIRELEN_AVG <= 97
+|   |   |   |   |   |   |   |   |   WIRELEN_AVG <= 94
+|   |   |   |   |   |   |   |   |   |   TCP_WINDOW_AVG <= 236: NORMAL (105.0)
+|   |   |   |   |   |   |   |   |   |   TCP_WINDOW_AVG > 236
+|   |   |   |   |   |   |   |   |   |   |   IP_TTL_AVG <= 89: R2L (2.0)
+|   |   |   |   |   |   |   |   |   |   |   IP_TTL_AVG > 89: NORMAL (8.0)
+|   |   |   |   |   |   |   |   |   WIRELEN_AVG > 94: R2L (4.0)
+|   |   |   |   |   |   |   |   WIRELEN_AVG > 97: NORMAL (516.0)
+|   |   |   |   |   TCP_RST > 0
+|   |   |   |   |   |   WIRELEN_AVG <= 57: NORMAL (712.0)
+|   |   |   |   |   |   WIRELEN_AVG > 57
+|   |   |   |   |   |   |   IP_TTL_AVG <= 94: R2L (17.0/1.0)
+|   |   |   |   |   |   |   IP_TTL_AVG > 94
+|   |   |   |   |   |   |   |   TCP_WINDOW_AVG <= 13: Probe (23.0)
+|   |   |   |   |   |   |   |   TCP_WINDOW_AVG > 13: NORMAL (2.0)
+|   |   |   |   TCP_FIN > 0
+|   |   |   |   |   WIRELEN_AVG <= 63
+|   |   |   |   |   |   WIRELEN_AVG <= 57: NORMAL (215.0)
+|   |   |   |   |   |   WIRELEN_AVG > 57
+|   |   |   |   |   |   |   TCP_WINDOW_AVG <= 305: Probe (4.0)
+|   |   |   |   |   |   |   TCP_WINDOW_AVG > 305: NORMAL (25.0)
+|   |   |   |   |   WIRELEN_AVG > 63
+|   |   |   |   |   |   TCP_WINDOW_AVG <= 201: NORMAL (9.0)
+|   |   |   |   |   |   TCP_WINDOW_AVG > 201
+|   |   |   |   |   |   |   TCP_WINDOW_AVG <= 232: R2L (16.0)
+|   |   |   |   |   |   |   TCP_WINDOW_AVG > 232: NORMAL (11.0/1.0)
+|   |   |   TCP_SYN > 0
+|   |   |   |   WIRELEN_AVG <= 59: NORMAL (281.0)
+|   |   |   |   WIRELEN_AVG > 59
+|   |   |   |   |   TCP_LENGTH_AVG <= 24: Probe (58.0/1.0)
+|   |   |   |   |   TCP_LENGTH_AVG > 24
+|   |   |   |   |   |   IP_TTL_AVG <= 121: NORMAL (107.0/1.0)
+|   |   |   |   |   |   IP_TTL_AVG > 121
+|   |   |   |   |   |   |   WIRELEN_AVG <= 62: NORMAL (37.0)
+|   |   |   |   |   |   |   WIRELEN_AVG > 62
+|   |   |   |   |   |   |   |   TCP_SYN <= 3
+|   |   |   |   |   |   |   |   |   TCP_HLEN_AVG <= 7: Probe (10.0/1.0)
+|   |   |   |   |   |   |   |   |   TCP_HLEN_AVG > 7: NORMAL (5.0/1.0)
+|   |   |   |   |   |   |   |   TCP_SYN > 3: NORMAL (3.0)
+|   |   TCP_PSH > 0
+|   |   |   TCP_HLEN_AVG <= 6
+|   |   |   |   PAYLOAD_OFFSET_AVG <= 17
+|   |   |   |   |   TCP_WINDOW_AVG <= 255: NORMAL (245.0/1.0)
+|   |   |   |   |   TCP_WINDOW_AVG > 255
+|   |   |   |   |   |   WIRELEN_AVG <= 311
+|   |   |   |   |   |   |   WIRELEN_AVG <= 278
+|   |   |   |   |   |   |   |   WIRELEN_AVG <= 273
+|   |   |   |   |   |   |   |   |   TCP_WINDOW_AVG <= 2734
+|   |   |   |   |   |   |   |   |   |   TCP_RST <= 17
+|   |   |   |   |   |   |   |   |   |   |   TCP_PSH <= 1
+|   |   |   |   |   |   |   |   |   |   |   |   TCP_RST <= 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   WIRELEN_AVG <= 231
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   WIRELEN_AVG <= 213
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   WIRELEN_AVG <= 107
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   TCP_WINDOW_AVG <= 1939: Probe (8.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   TCP_WINDOW_AVG > 1939: NORMAL (9.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   WIRELEN_AVG > 107: NORMAL (22.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   WIRELEN_AVG > 213: Probe (4.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   WIRELEN_AVG > 231: NORMAL (38.0)
+|   |   |   |   |   |   |   |   |   |   |   |   TCP_RST > 0: Probe (3.0)
+|   |   |   |   |   |   |   |   |   |   |   TCP_PSH > 1
+|   |   |   |   |   |   |   |   |   |   |   |   TYPE_PACKET = UDP: Probe (0.0)
+|   |   |   |   |   |   |   |   |   |   |   |   TYPE_PACKET = TCP
+|   |   |   |   |   |   |   |   |   |   |   |   |   TCP_FIN <= 0: NORMAL (54.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   TCP_FIN > 0
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   WIRELEN_AVG <= 133
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   WIRELEN_AVG <= 63
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   TCP_RST <= 1
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   TCP_PSH <= 4: NORMAL (4.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   TCP_PSH > 4: Probe (5.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |   TCP_RST > 1: NORMAL (2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   WIRELEN_AVG > 63: Probe (91.0/4.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   WIRELEN_AVG > 133
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   PAYLOAD_OFFSET_AVG <= 12: NORMAL (6.0)
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   PAYLOAD_OFFSET_AVG > 12: Probe (3.0/1.0)
+|   |   |   |   |   |   |   |   |   |   |   |   TYPE_PACKET = HTTP: Probe (87.0/2.0)
+|   |   |   |   |   |   |   |   |   |   |   |   TYPE_PACKET = OTHER: Probe (0.0)
+|   |   |   |   |   |   |   |   |   |   TCP_RST > 17: NORMAL (19.0)
+|   |   |   |   |   |   |   |   |   TCP_WINDOW_AVG > 2734: NORMAL (44.0/1.0)
+|   |   |   |   |   |   |   |   WIRELEN_AVG > 273: NORMAL (259.0)
+|   |   |   |   |   |   |   WIRELEN_AVG > 278: Probe (288.0)
+|   |   |   |   |   |   WIRELEN_AVG > 311: NORMAL (165.0)
+|   |   |   |   PAYLOAD_OFFSET_AVG > 17: NORMAL (1579.0/10.0)
+|   |   |   TCP_HLEN_AVG > 6
+|   |   |   |   TCP_SYN <= 12
+|   |   |   |   |   TYPE_PACKET = UDP: NORMAL (0.0)
+|   |   |   |   |   TYPE_PACKET = TCP
+|   |   |   |   |   |   TCP_WINDOW_AVG <= 2162
+|   |   |   |   |   |   |   TCP_WINDOW_AVG <= 344
+|   |   |   |   |   |   |   |   TCP_WINDOW_AVG <= 201: NORMAL (12.0)
+|   |   |   |   |   |   |   |   TCP_WINDOW_AVG > 201
+|   |   |   |   |   |   |   |   |   TCP_WINDOW_AVG <= 264: R2L (15.0)
+|   |   |   |   |   |   |   |   |   TCP_WINDOW_AVG > 264
+|   |   |   |   |   |   |   |   |   |   NO_OF_PACKETS <= 7: NORMAL (14.0/1.0)
+|   |   |   |   |   |   |   |   |   |   NO_OF_PACKETS > 7: R2L (13.0)
+|   |   |   |   |   |   |   TCP_WINDOW_AVG > 344
+|   |   |   |   |   |   |   |   NO_OF_PACKETS <= 50: NORMAL (72.0)
+|   |   |   |   |   |   |   |   NO_OF_PACKETS > 50: R2L (6.0/1.0)
+|   |   |   |   |   |   TCP_WINDOW_AVG > 2162
+|   |   |   |   |   |   |   WIRELEN_AVG <= 180
+|   |   |   |   |   |   |   |   TCP_WINDOW_AVG <= 9873: R2L (48.0/1.0)
+|   |   |   |   |   |   |   |   TCP_WINDOW_AVG > 9873: NORMAL (3.0)
+|   |   |   |   |   |   |   WIRELEN_AVG > 180
+|   |   |   |   |   |   |   |   WIRELEN_AVG <= 459: NORMAL (2.0)
+|   |   |   |   |   |   |   |   WIRELEN_AVG > 459: DOS (4.0)
+|   |   |   |   |   TYPE_PACKET = HTTP: NORMAL (56.0)
+|   |   |   |   |   TYPE_PACKET = OTHER: NORMAL (0.0)
+|   |   |   |   TCP_SYN > 12
+|   |   |   |   |   TCP_URG <= 0: DOS (5.0/1.0)
+|   |   |   |   |   TCP_URG > 0: Probe (2.0)
+|   WIRELEN_AVG > 1392
+|   |   IP_TTL_AVG <= 62: NORMAL (32.0)
+|   |   IP_TTL_AVG > 62
+|   |   |   TCP_LENGTH_AVG <= 26: NORMAL (9.0)
+|   |   |   TCP_LENGTH_AVG > 26
+|   |   |   |   NO_OF_PACKETS <= 2
+|   |   |   |   |   TCP_PSH <= 0
+|   |   |   |   |   |   TCP_WINDOW_AVG <= 232: DOS (2.0)
+|   |   |   |   |   |   TCP_WINDOW_AVG > 232: R2L (2.0)
+|   |   |   |   |   TCP_PSH > 0: R2L (3.0)
+|   |   |   |   NO_OF_PACKETS > 2: DOS (52.0/2.0)
+TCP_SYN > 28
+|   IP_FLAG_AVG <= 1
+|   |   IP_TTL_AVG <= 63: Probe (1046.0)
+|   |   IP_TTL_AVG > 63
+|   |   |   TCP_LENGTH_AVG <= 21: DOS (11.0)
+|   |   |   TCP_LENGTH_AVG > 21: Probe (15.0)
+|   IP_FLAG_AVG > 1
+|   |   PAYLOAD_OFFSET_AVG <= 31
+|   |   |   TCP_RST <= 22
+|   |   |   |   TCP_HLEN_AVG <= 5: Probe (6.0)
+|   |   |   |   TCP_HLEN_AVG > 5: NORMAL (8.0)
+|   |   |   TCP_RST > 22: NORMAL (17.0)
+|   |   PAYLOAD_OFFSET_AVG > 31: DOS (4.0)
+
+Number of Leaves  : 	82
+
+Size of the tree : 	159

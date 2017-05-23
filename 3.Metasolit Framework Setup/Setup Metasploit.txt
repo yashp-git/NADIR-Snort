@@ -1,0 +1,19 @@
+##Download metasploit.iso file from the given below link
+
+https://sourceforge.net/projects/ids-snort-v1/files/metasploit.iso/download
+
+##Mount metasploit.iso and copy the file into VMs
+##metasploit enviorment setup
+
+sudo apt-get install build-essential libreadline-dev libssl-dev libpq5 libpq-dev libreadline5 libsqlite3-dev libpcap-dev openjdk-7-jre git-core autoconf postgresql pgadmin3 curl zlib1g-dev libxml2-dev libxslt1-dev vncviewer libyaml-dev curl zlib1g-dev ruby1.9.3
+sudo apt-get install nmap
+sudo gem install wirble sqlite3 bundler
+su postgres
+createuser msf -P -S -R -D
+createdb -O msf msf
+
+
+chmod +x metasploit-latest-linux-installer.run
+./metasploit-latest-linux-installer.run
+sudo msfupdate
+sudo msfconsole

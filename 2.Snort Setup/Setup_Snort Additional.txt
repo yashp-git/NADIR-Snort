@@ -1,0 +1,181 @@
+#####Installing Barnyard2
+
+sudo apt-get install -y mysql-server libmysqlclient-dev mysql-client autoconf libtool
+
+sudo vi /etc/snort/snort.conf	>	output unified2: filename snort.u2, limit 128
+
+cd ~/zinstall
+wget https://github.com/firnsy/barnyard2/archive/v2-1.13.tar.gz -O barnyard2-2-1.13.tar.gz
+tar zxvf barnyard2-2-1.13.tar.gz
+cd barnyard2-2-1.13
+autoreconf -fvi -I ./m4
+
+
+./configure --with-mysql --with-mysql-libraries=/usr/lib/x86_64-linux-gnu
+./configure --with-mysql --with-mysql-libraries=/usr/lib/i386-linux-gnu
+
+
+make
+sudo make install
+
+sudo ln -s /usr/include/dumbnet.h /usr/include/dnet.h
+sudo ldconfig
+
+
+cd ~/zinstall/barnyard2-2-1.13
+sudo cp etc/barnyard2.conf /etc/snort
+ 
+# the /var/log/barnyard2 folder is never used or referenced
+# but barnyard2 will error without it existing
+sudo mkdir /var/log/barnyard2
+sudo chown snort.snort /var/log/barnyard2
+ 
+sudo touch /var/log/snort/barnyard2.waldo
+sudo chown snort.snort /var/log/snort/barnyard2.waldo
+sudo touch /etc/snort/sid-msg.map
+
+$ mysql -u root -p
+mysql> create database snort;
+mysql> use snort;
+mysql> source ~/zinstall/barnyard2-2-1.13/schemas/create_mysql
+mysql> CREATE USER 'snort'@'localhost' IDENTIFIED BY 'MYSQLSNORTPASSWORD';
+mysql> grant create, insert, select, delete, update on snort.* to 'snort'@'localhost';
+mysql> exit
+
+sudo vi /etc/snort/barnyard2.conf
+output database: log, mysql, user=snort password=MYSQLSNORTPASSWORD dbname=snort host=localhost
+sudo chmod o-r /etc/snort/barnyard2.conf
+
+sudo /usr/local/bin/snort -q -u snort -g snort -c /etc/snort/snort.conf -i eth0 -D
+sudo barnyard2 -c /etc/snort/barnyard2.conf -d /var/log/snort -f snort.u2 -w /var/log/snort/barnyard2.waldo -g snort -u snort
+
+ps aux | grep snort
+sudo kill 
+
+
+##Installing PulledPork
+
+sudo apt-get install -y libcrypt-ssleay-perl liblwp-useragent-determined-perl
+
+
+cd ~/zinstall
+wget https://github.com/finchy/pulledpork/archive/66241690356d54faa509625a78f80f326b75c339.tar.gz -O pulledpork-0.7.2-194.tar.gz
+tar xvfvz pulledpork-0.7.2-194.tar.gz
+mv pulledpork-66241690356d54faa509625a78f80f326b75c339 pulledpork-0.7.2-194
+
+cd pulledpork-0.7.2-194/
+sudo cp pulledpork.pl /usr/local/bin
+sudo chmod +x /usr/local/bin/pulledpork.pl
+sudo cp etc/*.conf /etc/snort
+
+/usr/local/bin/pulledpork.pl -V
+
+sudo vi /etc/snort/pulledpork.conf
+
+Line 19 & 26:  enter your oinkcode where appropriate (or comment out if no oinkcode)
+Line 29:  Un-comment for Emerging threats ruleset (not tested with this guide)
+ 
+Line 74:  change to: rule_path=/etc/snort/rules/snort.rules
+Line 89:  change to: local_rules=/etc/snort/rules/local.rules
+Line 92:  change to: sid_msg=/etc/snort/sid-msg.map
+Line 96:  change to: sid_msg_version=2
+Line 119:  change to: config_path=/etc/snort/snort.conf
+Line 133:  change to: distro=Ubuntu-12-04
+Line 141:  change to: black_list=/etc/snort/rules/iplists/default.blacklist
+Line 150:  change to: IPRVersion=/etc/snort/rules/iplists
+
+
+sudo /usr/local/bin/pulledpork.pl -c /etc/snort/pulledpork.conf -l
+
+sudo snort -T -c /etc/snort/snort.conf
+sudo /usr/local/bin/snort -u snort -g snort -c /etc/snort/snort.conf -i eth0 -D
+sudo barnyard2 -c /etc/snort/barnyard2.conf -d /var/log/snort -f snort.u2 -w /var/log/snort/barnyard2.waldo -g snort -u snort -D
+
+sudo crontab -e
+01 04 * * * /usr/local/bin/pulledpork.pl -c /etc/snort/pulledpork.conf -l
+
+
+##install BASE
+
+sudo apt-get install -y apache2 libapache2-mod-php5 php5 php5-mysql php5-common php5-gd php5-cli php-pear
+
+pear config-set http_proxy http://proxy.nyit.edu:80
+
+sudo pear install -f Image_Graph
+
+cd ~/zinstall
+wget http://sourceforge.net/projects/adodb/files/adodb-php5-only/adodb-518-for-php5/adodb518a.tgz/download -O adodb518.tgz
+tar -xvzf adodb518.tgz
+sudo mv adodb5 /var/adodb
+
+
+cd ~/zinstall
+wget http://sourceforge.net/projects/secureideas/files/BASE/base-1.4.5/base-1.4.5.tar.gz
+tar -zxvf base-1.4.5.tar.gz
+
+sudo mv base-1.4.5 /var/www/html/base/
+cd /var/www/html/base
+sudo cp base_conf.php.dist base_conf.php
+sudo chown -R www-data:www-data /var/www/html/base
+sudo chmod o-r /var/www/html/base/base_conf.php
+sudo vi /var/www/html/base/base_conf.php
+
+
+$BASE_urlpath = '/base';            # line 50
+$DBlib_path = '/var/adodb/';        #line 80
+$alert_dbname   = 'snort';          # line 102
+$alert_host     = 'localhost';
+$alert_port     = '';
+$alert_user     = 'snort';
+$alert_password = 'MYSQLSNORTPASSWORD'; # line 106
+
+sudo service apache2 restart
+
+ifconfig eth0 promisc up
+ifconfig eth1 promisc up
+ifconfig eth2 promisc up
+
+modprobe bridge
+
+modprobe nfnetlink_queue
+lsmod | grep nfnetlink_queue
+
+###change IPTABLES
+
+iptables -A INPUT -p tcp -s 198.242.56.162 -j QUEUE
+iptables -A OUTPUT -p tcp -d 198.242.56.161 -j QUEUE
+iptables -A FORWARD -p tcp -d 198.242.56.161 -j QUEUE
+
+##Creating the Upstart Scripts
+
+sudo vi /etc/init/snort.conf
+
+description "Snort NIDS service"
+stop on runlevel [!2345]
+start on runlevel [2345]
+script
+    #exec /usr/sbin/snort -Q -v -u snort -g snort -c /etc/snort/snort.conf -i eth0 -D
+	exec /usr/sbin/snort -i eth1 -Q -v -u snort -g snort -c /etc/snort/snort.conf -D
+end script
+
+sudo chmod +x /etc/init/snort.conf
+initctl list | grep snort
+
+
+sudo vi /etc/init/barnyard2.conf
+
+description "barnyard2 service"
+stop on runlevel [!2345]
+start on runlevel [2345]
+script
+    exec /usr/local/bin/barnyard2 -c /etc/snort/barnyard2.conf -d /var/log/snort -f snort.u2 -w /var/log/snort/barnyard2.waldo -g snort -u snort -D
+end script
+
+sudo chmod +x /etc/init/barnyard2.conf
+initctl list | grep barnyard
+
+
+#####Refrences
+http://stackoverflow.com/questions/11211705/setting-proxy-in-wget
+http://commons.oreilly.com/wiki/index.php/Snort_Cookbook
+http://sublimerobots.com/2014/12/installing-snort-part-1/

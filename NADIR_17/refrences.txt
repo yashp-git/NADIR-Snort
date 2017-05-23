@@ -1,0 +1,39 @@
+#introduction
+1. Snort https://www.snort.org
+2. Weka http://www.cs.waikato.ac.nz/ml/weka/
+
+
+#releted work
+
+1. Analysis of network traffic features for anomaly detection By Félix Iglesias · Tanja Zseby
+2. Data Mining and Intrusion Detection Systems By Zibusiso Dewa and Leandros A. Maglaras
+3. Detecting the Unknown with Snort and the Statistical Packet Anomaly Detection Engine ( SPADE )
+4. Network Traffic Data to ARFF Convertor for Association Rules Technique of Data Mining By Nattawat Khamphakdee1, Nunnapus Benjamas1 and Saiyan Saiyod2
+5. https://weka.wikispaces.com/Use+Weka+in+your+Java+code
+6. Honeypots: Catching the Insider Threat
+7. Analysis of Port Hopping for Proactive Cyber Defense
+8. http://www.rationallyparanoid.com/articles/beeswarm-honeypot.html
+9. Signature Based Intrusion Detection System Using SNORT
+10. A Declarative Approach to Stateful Intrusion Detection and Network Monitoring
+11. https://www.ll.mit.edu/ideval/data/
+12. A Neural Network based system for Intrusion Detection and attack classification
+13. Denial- of Service, Probing & Remote to Local(R2L) Attack Detect on using Genetic Algorithm
+14. A Dynamic Rule Creation Based Anomaly Detection Method for Identifying Security Breaches in Log Records
+
+
+
+#experimental setup
+
+1. https://information.rapid7.com/metasploitable-download.html
+/2. Data Mining and Intrusion Detection Systems By Zibusiso Dewa and Leandros A. Maglaras
+3. Network Intrusion Detection Using Improved Decision Tree Algorithm By K.V.R. Swamy, K.S. Vijaya Lakshmi
+4. https://openmaniak.com/inline_final.php
+5. http://resources.infosecinstitute.com/snort-tracking-exploit-progress-with-flowbits/#gref
+6. Machine Learning with WEKA WEKA Explorer Tutorial for WEKA Version 3.4.3
+7. https://www.offensive-security.com/metasploit-unleashed/existing-scripts/
+8. Anomaly-based network intrusion detection: Techniques, systems and challenges
+
+
+#result
+
+1. https://weka.wikispaces.com/Use+Weka+in+your+Java+code

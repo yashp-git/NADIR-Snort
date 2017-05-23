@@ -1,0 +1,36 @@
+##Download ubuntu-14.04.3-server-i386.iso from link :
+https://sourceforge.net/projects/ids-snort-v1/files/ubuntu-14.04.3-server-i386.iso/download
+
+
+##Setup first VMBox on development server (victim)
+
+
+VBoxManage list extpacks
+VBoxManage list runningvms
+VBoxManage createvm --name "victim" --register
+VBoxManage modifyvm " victim " --memory 1024 --acpi on --boot1 dvd --nic1 bridged --bridgeadapter1 em1 --nic2 none --ostype Ubuntu
+VBoxManage showvminfo " victim " --details
+VBoxManage modifyvm " victim " --vrde on --vrdeport 3390
+VBoxManage createvdi --filename ~/VirtualBox\ VMs/ victim / victim -disk01.vdi --size 10000
+VBoxManage storagectl " victim " --name "IDE Controller" --add ide
+VBoxManage storageattach " victim " --storagectl "IDE Controller" --port 0 --device 0 --type hdd --medium ~/VirtualBox\ VMs/ victim / victim -disk01.vdi
+VBoxManage storageattach " victim " --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium /home/ypatel20/iso/ubuntu-14.04.3-server-i386.iso
+VBoxManage modifyvm " victim " --vrde on
+VBoxHeadless --startvm " victim " &
+VBoxManage controlvm victim poweroff
+
+
+##Setup second VMBox on development server (attacker)
+
+VBoxManage list extpacks
+VBoxManage list runningvms
+VBoxManage createvm --name " attacker " --register
+VBoxManage modifyvm " attacker " --memory 1024 --acpi on --boot1 dvd --nic1 bridged --bridgeadapter1 em1 --nic2 none --ostype Ubuntu
+VBoxManage modifyvm " attacker " --vrde on --vrdeport 3389
+VBoxManage createvdi --filename ~/VirtualBox\ VMs/ attacker / attacker -disk01.vdi --size 10000
+VBoxManage storagectl " attacker " --name "IDE Controller" --add ide
+VBoxManage storageattach " attacker " --storagectl "IDE Controller" --port 0 --device 0 --type hdd --medium ~/VirtualBox\ VMs/ attacker / attacker -disk01.vdi
+VBoxManage storageattach " attacker " --storagectl "IDE Controller" --port 1 --device 0 --type dvddrive --medium /home/ypatel20/iso/ubuntu-14.04.3-server-i386.iso
+VBoxManage modifyvm " attacker " --vrde on
+VBoxHeadless --startvm " attacker " &
+VBoxManage controlvm attacker poweroff

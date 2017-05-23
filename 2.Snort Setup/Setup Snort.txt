@@ -1,0 +1,101 @@
+##You can download from snort official website
+
+wget http://libdnet.googlecode.com/files/libdnet-1.12.tgz
+wget https://www.snort.org/downloads/snort/snort-2.9.8.0.tar.gz
+wget https://www.snort.org/downloads/snort/daq-2.0.6.tar.gz
+
+**Here i put these all files and made iso so you can directly download iso and configured it using below commands.
+
+##Download snort.iso file from the given below link
+https://sourceforge.net/projects/ids-snort-v1/files/snort.iso/download
+
+##Mount snort.iso and copy files on machine
+##Snort installation step by step
+
+apt-get update
+apt-get upgrade
+apt-get install flex bison build-essential checkinstall libpcap-dev libdnet libdnet-dev libnet1-dev libpcre3-dev libmysqlclient-dev libnetfilter-queue-dev iptables-dev
+
+##Configure libnet
+
+tar xvfvz libdnet-1.12.tgz
+cd libdnet-1.12
+./configure CFLAGS=-fPIC; make
+sudo checkinstall
+sudo dpkg -i libdnet_1.12-1_i386.deb
+sudo ln -s /usr/local/lib/libdnet.1.0.1 /usr/lib/libnet.1
+cp /usr/local/lib/libdnet.1.0.1 /usr/local/lib/libdnet.so.1.0.1
+LD_LIBRARY_PATH=/usr/local/lib
+export LD_LIBRARY_PATH
+
+
+##Configure daq
+
+tar xvfz daq-2.0.6.tar.gz
+cd daq-2.0.6/
+./configure CFLAGS=-fPIC; make
+sudo checkinstall
+sudo dpkg -i daq_2.0.6-1_i386.deb
+
+##Configure snort
+
+tar xvfz snort-2.9.8.0.tar.gz
+cd snort-2.9.8.0/
+./configure
+sudo checkinstall
+sudo dpkg -i snort_2.9.8.0-1_i386.deb
+sudo ln -s /usr/local/bin/snort /usr/sbin/snort
+sudo ldconfig -v
+snort -V
+
+sudo groupadd snort
+sudo useradd snort -d /var/log/snort -s /sbin/nologin -c SNORT_IDS -g snort
+sudo mkdir /var/log/snort
+sudo chown snort:snort /var/log/snort/
+
+
+##install comunity rules
+##you can download snortrule from official website manually
+wget https://www.snort.org/downloads/registered/snortrules-snapshot-2980.tar.gz
+
+mkdir /etc/snort
+
+tar xvfvz snortrules-snapshot-2980.tar.gz -C /etc/snort/
+sudo mkdir /usr/local/lib/snort_dynamicrules
+sudo chown -R snort:snort /etc/snort/*
+sudo mv /etc/snort/etc/* /etc/snort/
+
+##vim snort.conf
+sudo vim /etc/snort/snort.conf
+
+ipvar HOME_NET 10.1.10.0/24
+ipvar EXTERNAL_NET !$HOME_NET
+
+change RULE_PATH ../rules/ to RULE_PATH /etc/snort/rules/
+
+##firewall
+sudo ufw disable
+
+
+##Run snort on eth0##
+##packet dump mode:
+sudo snort -c /etc/snort/snort.conf -A console -i eth0 -K ascii
+##sniffer mode:
+snort -vde
+##sniffer-log mode:
+snort -vde -l /var/log/snort/ -K ascii
+##test mode:
+sudo snort -T -i eth0 -u snort -g snort -c /etc/snort/snort.conf
+##analysis mode:
+snort -A console -i eth0 -c /etc/snort/snort.conf -l /var/log/snort -K ascii
+##read pcap mode:
+snort -r /var/www/html/IDS/upload_pcap/tcp.pcap -c /etc/snort/snort.conf -l /var/log/snort -K ascii
+
+
+
+##Refrence tutorial ##Configure Snort in Ubuntu 14
+
+http://www.unixmen.com/install-snort-nids-ubuntu-15-04/
+http://linton.tw/2014/08/17/Install-Snort-from-source-on-Ubuntu/
+http://linton.logdown.com/posts/2014/08/16/install-snort-from-source-on-ubuntu
+http://manual.snort.org/node8.html

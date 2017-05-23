@@ -1,0 +1,6 @@
+\section{Discussion}
+\label{discussion}
+
+In accuracy results, ROC- space shows area under the curve (AUC) is 98\% of accurate for Normal traffic. It classified Probe, R2L, Dos attacks with 99\%, 95\% and 98\% accurate results respectively. Here, ROC Curves can be used to evaluate the tradeoff between TP (true-positive) and FP (false-positive) rates of classification algorithm. We got some false prediction in which actual attack predicted as normal and same as some normal pattern classified as an attack and got some false alarm by the machine learning classifier. Dos results shows that there is 0.0 FP rate with the classification algorithms.
+
+This study found that the rules of Snort-IDS can be generated and controlled by J48 tree machine learning technique and the feature time-window size (the period of time) of network traffic help us to classify our problem from the higher view because some problems we cannot identify if we analyze the network traffic per packet. We used to work on a unique source IP and destination IP address features, non-duplicate IP Address, per time-window. However, these two features were removed from our feature list in both source and destination because they increase the FP of our result in term of classifying legitimate packets.

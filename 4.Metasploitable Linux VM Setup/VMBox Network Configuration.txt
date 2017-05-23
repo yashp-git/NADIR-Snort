@@ -1,0 +1,32 @@
+##Network Configuration
+
+Main Server IP	:198.242.56.249
+
+vulnerable IP 		:198.242.56.121 tcp-port:3388 vm
+
+##Setup proxy server settings on both VMs
+
+proxy IP		:198.242.56.207	tcp-port:80 (proxy.nyit.edu:80)
+
+
+For vulnerable
+##Change /etc/network/interfaces
+
+auto eth0
+iface eth0 inet static
+        address 198.242.56.121
+        netmask 255.255.255.0
+        network 198.242.56.0
+        broadcast 198.242.56.255
+        gateway 198.242.56.1
+        # dns-* options are implemented by the resolvconf package, if installed
+        dns-nameservers 64.35.176.53 64.35.176.65
+        dns-search nyit.edu
+		
+		
+##change /etc/apt/apt.conf
+			
+Acquire::http::proxy "http://proxy.nyit.edu:80/";
+Acquire::https::proxy "https://proxy.nyit.edu:80/";
+Acquire::ftp::proxy "ftp://proxy.nyit.edu:80/";
+Acquire::socks::proxy "socks://proxy.nyit.edu:80/";

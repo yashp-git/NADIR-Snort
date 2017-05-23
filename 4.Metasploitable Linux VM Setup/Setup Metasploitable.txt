@@ -1,0 +1,17 @@
+##Download Metasploitable Ubuntu Linux 2.rar file from the given below link
+https://sourceforge.net/projects/ids-snort-v1/files/Metasploitable_Ubuntu_Linux-2.tar.gz/download
+
+Make vm named directory at following path: ~/VirtualBox\ VMs/ and extract the downloaded .rar file at that same path.(~/VirtualBox\ VMs/vm/)
+
+
+##Configured metasploitable ubuntu linux on Development server
+
+
+	>vm	IP	:198.242.56.121 tcp-port:3399	vm::vm		(Vulnerable Linux)
+
+
+VBoxManage list runningvms
+VBoxManage import "/home/ypatel20/ISO/vulnerable.ova" --vsys 0 --vmname vulnerable
+VBoxManage modifyvm "vulnerable " --vrde on --vrdeport 3388
+VBoxManage modifyvm "vulnerable " --vrde on
+VBoxHeadless --startvm "vulnerable " &

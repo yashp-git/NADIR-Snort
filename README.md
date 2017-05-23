@@ -1,2 +1,39 @@
-# NADIR-Snort
-Abstract—It has become increasingly difficult to monitor computer networks as they have grown in scale and complexity. This lack of awareness makes responding to, or even recognizing, attacks a challenge. As a result, organizations’ reactions to attacks are delayed, typically leaving them to address the situation long after an incident has taken place. The central idea behind this research is to provide earlier notification of potential network attacks by using deceptive network service information as bait. These ”decoy” or ”honey-services” will indicate system weak points which do not exist when suspicious network circumstances are detected. That is, although up-to-date versions of the programs will be running on the system at all times, software versions with vulnerabilities will be advertised when a potential attack or reconnaissance effort is detected. Attacks against these services will be unsuccessful because the server running our system is not actually running the vulnerable services. By providing fake vulnerable points, our system is capable of collecting information about attacks earlier in the reconnaissance phase, potentially catching adversaries in the act without exposing any actual system weaknesses. Our solution effectively transforms any legitimate server into a “honeypot” without the added overhead of setting up and maintaining a set of fake network infrastructure.
+# IDS-Snort
+
+##Setup VMBox
+>Follow the steps of Setup VMBox.txt file (/1.VMBox Setup/Setup VMBox.txt)
+>Extract .zip file and run tightvnc-jviewer.jar (to connect vnc server using the tightvnc client using GUI)
+
+##the tightVNC connection via ssh tunneling
+>Remote Host: 198.242.56.249
+Port: 3390
+>SSH Server: 198.242.56.249
+SSH Port: 22
+SSH User: y*******(ubuntu username)
+
+##Configure Network Settings
+>Follow the netwotk configurations for VMBox (/1.VMBox Setup/VMBox Network Configuration.txt)
+>change the ip settings as descibed in VMBox Network Configuration.txt file
+
+##Setup ssh-server on VMBox
+>apt-get update
+>apt-get upgrade
+>apt-get install openssh-server
+
+##Setup Snort on VMBox
+>Follow the given steps in the file(/2.Snort Setup/Setup Snort.txt)
+
+##Setup Metasploit on VMBox
+>Follow the given steps in the file(/3.Metasploit Framework Setup/Setup Metasploit.txt)
+
+##Configure Metasploitable Ubuntu Linux on VMBox
+>Follow the given steps in the file(/4.Metasploitable Linux VM Setup/Setup Metasploitable.txt)
+
+##Vulnerability exploitation source code
+>Follow the given description in the file(/5.Network Vulnerability Research/Metasploit_exploitation.txt)
+>for more details about vulnerablity research section please follow the attached exploitation manual.
+
+####Version-4
+>07/14/2016
+>Y'Ash
+

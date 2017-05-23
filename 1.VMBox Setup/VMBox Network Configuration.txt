@@ -1,0 +1,56 @@
+##Network Configuration
+
+Main Server IP	:198.242.56.249
+
+victim IP 		:198.242.56.122 tcp-port:3390	victim
+attacker IP		:198.242.56.123 tcp-port:3389	attacker
+
+##Setup proxy server settings on both VMs
+
+proxy IP		:198.242.56.207	tcp-port:80 (proxy.nyit.edu:80)
+
+
+For victim
+##Change /etc/network/interfaces
+
+auto eth0
+iface eth0 inet static
+        address 198.242.56.122
+        netmask 255.255.255.0
+        network 198.242.56.0
+        broadcast 198.242.56.255
+        gateway 198.242.56.1
+        # dns-* options are implemented by the resolvconf package, if installed
+        dns-nameservers 64.35.176.53 64.35.176.65
+        dns-search nyit.edu
+		
+		
+##change /etc/apt/apt.conf
+			
+Acquire::http::proxy "http://proxy.nyit.edu:80/";
+Acquire::https::proxy "https://proxy.nyit.edu:80/";
+Acquire::ftp::proxy "ftp://proxy.nyit.edu:80/";
+Acquire::socks::proxy "socks://proxy.nyit.edu:80/";
+
+
+For attacker
+##Change /etc/network/interfaces
+
+auto eth0
+iface eth0 inet static
+        address 198.242.56.123
+        netmask 255.255.255.0
+        network 198.242.56.0
+        broadcast 198.242.56.255
+        gateway 198.242.56.1
+        # dns-* options are implemented by the resolvconf package, if installed
+        dns-nameservers 64.35.176.53 64.35.176.65
+        dns-search nyit.edu
+		
+##change /etc/apt/apt.conf
+			
+Acquire::http::proxy "http://proxy.nyit.edu:80/";
+Acquire::https::proxy "https://proxy.nyit.edu:80/";
+Acquire::ftp::proxy "ftp://proxy.nyit.edu:80/";
+Acquire::socks::proxy "socks://proxy.nyit.edu:80/";
+

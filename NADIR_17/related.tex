@@ -1,11 +1,75 @@
 \section{Related Work}
 \label{related}
 
-In this section, we covered our background research related to our development. We began our research by observing and listing useful features for anomaly based intrusion detection used in previous researches and as suggested we collected and listed features by looking at different dataset for intrusion detection. We have started our research by work on DARPA, NSL-KDD, KDD-cup'99 dataset and understand dataset methodology. They have included Network based, System based as well as User based features into the NSL-KDD, KDD-cup'99 dataset \cite{AnalysisofNetfeatures}. DARPA-pi introduces the dataset for network simulation and we found they collected unlabeled dataset which can be divided into clusters by normal or abnormal behavior of network \cite{DARPAdataset,NeuralNetBase}. Such as, we have focused on network threats only that includes ten different attacks and divided into three major types in our research. In which we covered Port Scanning (Probe) - gathering network information to bypass security, Denial of Service (Dos)-where some resource is swamped; causing DoS to legitimate users, Remote to local (R2L)-attacks that exploit remote system vulnerabilities to get access to a system\cite{R2L}. 
+Network intrusion detection is a well-studied field, having been the focus of research for over two decades \cite{roesch1999snort, wang2004anomalous}. Approaches to intrusion detection can
+typically be classified as rule-based, which are efficient but vulnerable to previously unobserved ``zero-day'' attacks, and anomaly based, which are capable of detecting novel attacks, but can be slow to
+train and may incur high error rates. For example, a recent approach applied a neural network to classify traffic into normal and abnormal clusters \cite{NeuralNetBase}. Other approaches to learning for 
+anomaly-based intrusion detection include Naive Bayes, Nearest neighbor, Decision Tree, and Support Vector Machines \cite{DMnIDS}. The most widely deployed IDS, Snort, is typically signature-based, but 
+did support anomaly-based detection via the SPADE project \cite{SPADE}. Anomaly based intrusion detection approaches are orthogonal to this work, which instead focuses on leveraging network situational
+awareness in order to adaptively respond to attacks.
 
-As KDD- cup'99 is really basic idea and it also has been long history in performance on anomaly based intrusion detection, but we realized it outdated and not much fit with our model, so finally We collected and built our own dataset for different network attacks with legitimate traffic. Detecting threats against network by searching for anomalous traffic has been an active research area. We found various existing research idea and their suggested approaches include packet inspection, data mining techniques for feature selection, machine learning techniques such as Naive Bayes, Nearest neighbor, Decision tree and Support vector machines to detect intrusion over network \cite{DMnIDS}. We found snort had also suggested research on anomaly based detection by severity and anomaly score based preprocessor- SPADE which suspended for such reasons \cite{SPADE}. Note that anomaly based intrusion detection approaches are orthogonal to this work, which instead focuses on leveraging network situational awareness in order to adaptively respond to attacks. By applying machine learning algorithm to classify threat from unknown data and pick those classifiers and used those features to get IDS rule sets to detect attacks in real-time. We have used decision tree classifier to get snort rule from selected features automatically from past research idea on snort rule generation mechanism by snort rule template using Association Rules Technique \cite{NetData2ARFF, misc:weka.jar}. 
+As a result of the research activity in the area of IDS, several venerable network traffic datasets have been collected, including the DARPA \cite{DARPAdataset},  KDD-cup'99 \cite{tavallaee2009detailed},
+and NSL-KDD \cite{lakhina2010feature} datasets. The goal of our research was not to improve upon the performance of prior approaches to anomaly detection, but rather to demonstrate how they could be
+extended to create on-the-fly honeypots by combining them with our decoy service mitigation strategy. As such, we utilized these datasets as a foundation by deriving features from them which could be used
+to detect network attacks which could be addressed with an adaptively service response. 
 
-Threat detection and vulnerability patches are important though the easiest way to defend machine is to hide information or make the machine invisible into the network. Port hoping is the defense technology which hides service information of the system and confused attackers when they try to reconnaissance by altering services ports \cite{honeypotCatchInsider}. Honeypot is basically used to collect network information and analysis the network behavior to improve its performance. The machine placed where the inbound network traffic comes in through router, so the honeypot collects and keeps track network traffic and its statistical behavior. It also has lots of research with threat detection used by honeypot service \cite{portHopping}. Honeypot the open source project for Ubuntu was the basic idea to reply any request with fake packet information \cite{misc:honeypot}. 
+These datasets included network, system, and user-derived features \cite{AnalysisofNetfeatures}; we utilized the
+available network level features which were available from these collections. More specifically, we chooses to focus our attention on three major attack categories: probe attacks and information collection
+efforts, such as port scans, Denial-of-Service attacks, where a targeted network resource is exhausted, preventing legitimate access, and remote-to-local (R2L) attacks which exploit remote system
+vulnerabilities in order to gain illicit system access. Although they have been used widely throughout the academic community, the aforementioned datasets are nearly two decades old, and as such are no
+longer considered representative of current network traffic \cite{KDDharmful}; this motivated our collection of our own network intrusion testing dataset.
+
+Another network defense option is to confuse and obstruct potential adversaries by providing deceptive information and decoy resources known as ``honeypots'' \cite{spitzner2003honeypots}. Honeypots, or 
+decoy servers, are used to collect information on adversarial activity without risking any legitimate network assets. The Beeswarm project is an example of a honeypot deployment framework \cite{beeswarm}. 
+A related defensive technology known as ``port hoping'' hides service information by rapidly altering the ports used by network services; only trusted clients aware of the anticipated pattern are able to 
+gain access \cite{portHopping}. While honeypots and related techniques are powerful tools, they require substantial overhead to deploy and manage. Similarly, altering service characteristics such as port 
+numbers constantly is a resource-intensive process. To address these shortcomings, our approach adaptively alters service characteristics only in response to detected threats.
+
+%Snort IDS is one of active research area from last some decades and Snort has some features which can be changed and that useful to change IDS behavior and make it honeypot temporarily using snort rules
+%\cite{signatureBaseIDSusingSnort}. Adaptive network response is most important part into the research our core goal for our research effort seeks to address this oversight by developing the novel 
+%technique
+%for detecting and responding to adversarial efforts to collect information about system they have targeted for attack \cite{aDeclarativeStateful}. We have not just focused on stop an attack but also catch
+%attacker with sufficient evidence and take an action on machine to overcome performed attack. In contrast, the main idea behind our approach is to create a feedback mechanism whereby hosts, routers, and
+%other devices can utilize current state information of network and alter network-facing properties to the attacker. By keep tracking network behavior and look at those anomalies and if the attack happens
+%then dynamically change firewall rules and also change its state and also capture attack events is our core goal end of this research, By checking logs and detect and mitigate threat would be an advanced
+%step which we could find in our application \cite{dynamicRuleCreation}. This how collected all important information and made background research more accurate and bidirectional in a way that we could 
+%work
+%on the actual experiment and its results and accuracy which we discussed in next part of this research paper.
+
+%A related defensive technology known as ``port hoping'' hides service information by rapidly altering service ports 
+%Threat detection and vulnerability patches are important though the easiest way to defend machine is to hide information or make the machine invisible into the network. \cite{spitzner2003honeypots}. 
+%Honeypots, or decoy servers, are used to collect information on adversarial activity without . The machine placed where the inbound network traffic comes in through router, so the honeypot collects and %keeps track network
+%traffic and its statistical behavior. It also has lots of research with threat detection used by honeypot service \cite{portHopping}. Honeypot the open source project for Ubuntu was the basic idea to %reply
+%any request with fake packet information \cite{misc:honeypot}.
+
+%We found snort had also suggested research on anomaly based detection by severity and anomaly score based
+%preprocessor- SPADE which suspended for such reasons \cite{SPADE}. 
+
+%Note that anomaly based intrusion detection approaches are orthogonal to this work, which instead focuses on leveraging network situational
+%awareness in order to adaptively respond to attacks. By applying machine learning algorithm to classify threat from unknown data and pick those classifiers and used those features to get IDS rule sets to
+%detect attacks in real-time. We have used decision tree classifier to get snort rule from selected features automatically from past research idea on snort rule generation mechanism by snort rule template
+%using Association Rules Technique \cite{NetData2ARFF, misc:weka.jar}.
+
+%Detecting threats against network by searching for anomalous traffic has been an active research area. We found
+%various existing research idea and their suggested approaches include packet inspection, data mining techniques for feature selection, machine learning techniques such as Naive Bayes, Nearest neighbor,
+%Decision tree and Support vector machines to detect intrusion over network \cite{DMnIDS}. We found snort had also suggested research on anomaly based detection by severity and anomaly score based
+%preprocessor- SPADE which suspended for such reasons \cite{SPADE}. Note that anomaly based intrusion detection approaches are orthogonal to this work, which instead focuses on leveraging network
+%situational awareness in order to adaptively respond to attacks. By applying machine learning algorithm to classify threat from unknown data and pick those classifiers and used those features to get IDS
+%rule sets to detect attacks in real-time. We have used decision tree classifier to get snort rule from selected features automatically from past research idea on snort rule generation mechanism by snort
+%rule template using Association Rules Technique \cite{NetData2ARFF, misc:weka.jar}.
 
 
-Snort IDS is one of active research area from last some decades and snort has some features which can be changed and that useful to change IDS behavior and make it honeypot temporarily using snort rules \cite{signatureBaseIDSusingSnort}. Adaptive network response is most important part into the research our core goal for our research effort seeks to address this oversight by developing the novel technique for detecting and responding to adversarial efforts to collect information about system they have targeted for attack \cite{aDeclarativeStateful}. We have not just focused on stop an attack but also catch attacker with sufficient evidence and take an action on machine to overcome performed attack. In contrast, the main idea behind our approach is to create a feedback mechanism whereby hosts, routers, and other devices can utilize current state information of network and alter network-facing properties to the attacker. By keep tracking network behavior and look at those anomalies and if the attack happens then dynamically change firewall rules and also change its state and also capture attack events is our core goal end of this research, By checking logs and detect and mitigate threat would be an advanced step which we could find in our application \cite{dynamicRuleCreation}. This how collected all important information and made background research more accurate and bidirectional in a way that we could work on the actual experiment and its results and accuracy which we discussed in next part of this research paper.
+
+%This section, we covered our background research related to our development. We began our research by observing and listing useful features for anomaly based intrusion detection used in previous %researches
+%and as suggested we collected and listed features by looking at different dataset for intrusion detection. We have started our research by work on DARPA, NSL-KDD, KDD-cup'99 dataset and understand dataset
+%methodology. They have included Network based, System based as well as User based features into the NSL-KDD, KDD-cup'99 dataset \cite{AnalysisofNetfeatures}. DARPA-pi introduces the dataset for network
+%simulation and we found they collected unlabeled dataset which can be divided into clusters by normal or abnormal behavior of network \cite{DARPAdataset,NeuralNetBase}. Such as, we have focused on network
+%threats only that includes ten different attacks and divided into three major types in our research. In which we covered Port Scanning (Probe) - gathering network information to bypass security, Denial of
+%Service (Dos)-where some resource is swamped; causing DoS to legitimate users, Remote to local (R2L)-attacks that exploit remote system vulnerabilities to get access to a system\cite{R2L}.
+
+%As KDD- cup'99 is really basic idea and it also has been long history in performance on anomaly based intrusion detection, but we realized it outdated and not much fit with our model, so finally We
+%collected and built our own dataset for different network attacks with legitimate traffic. 
+
+
+
+

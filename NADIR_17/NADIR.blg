@@ -15,45 +15,45 @@ Warning--entry type for "NetData2ARFF" isn't style-file defined
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
 
 Done.
-You've used 23 entries,
+You've used 21 entries,
             4087 wiz_defined-function locations,
-            943 strings with 10971 characters,
-and the built_in function-call counts, 11131 in all, are:
-= -- 849
-> -- 192
-< -- 65
-+ -- 105
-- -- 32
-* -- 456
-:= -- 1730
-add.period$ -- 42
-call.type$ -- 23
-change.case$ -- 22
-chr.to.int$ -- 132
-cite$ -- 23
-duplicate$ -- 911
-empty$ -- 1001
-format.name$ -- 43
-if$ -- 2556
+            929 strings with 10576 characters,
+and the built_in function-call counts, 9967 in all, are:
+= -- 757
+> -- 168
+< -- 56
++ -- 92
+- -- 28
+* -- 403
+:= -- 1553
+add.period$ -- 39
+call.type$ -- 21
+change.case$ -- 20
+chr.to.int$ -- 114
+cite$ -- 21
+duplicate$ -- 821
+empty$ -- 908
+format.name$ -- 38
+if$ -- 2289
 int.to.chr$ -- 0
-int.to.str$ -- 23
-missing$ -- 179
-newline$ -- 96
-num.names$ -- 14
-pop$ -- 466
+int.to.str$ -- 21
+missing$ -- 161
+newline$ -- 88
+num.names$ -- 13
+pop$ -- 421
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 896
+skip$ -- 806
 stack$ -- 0
-substring$ -- 333
-swap$ -- 617
-text.length$ -- 21
+substring$ -- 288
+swap$ -- 547
+text.length$ -- 18
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 23
+type$ -- 21
 warning$ -- 0
-while$ -- 42
-width$ -- 25
-write$ -- 206
+while$ -- 37
+width$ -- 23
+write$ -- 187
 (There was 1 warning)

@@ -1,4 +1,12 @@
 \section{Threat model}
 \label{threat_model}
 
-In our research, we assume that all conditions of attack are based on remote attacks. It means “no adversaries can get into a target server physically, but they can exploit the target server remotely. The attackers know nothing about the N.A.D.I.R. system so that they attack the target server with no suspect. The attackers use some tools for scanning the target server's running services to learn the information of those services and look for a vulnerable service(s). Once they know the vulnerable service(s) on the target server, they can use other tools to attack the target through that service(s) to down the service or to gain an access so they can do more business. Which this threat model, the N.A.D.I.R. system takes an action at the first place where the attackers scan the running services on the server. The N.A.D.I.R. system hides the true information of running services then sends the decoy services' information back to the attackers. Thus, we can detect and catch the attackers who attack the decoy services.
+For the purposes of this project we assume attacks which are launched over a computer network from a remote host. Attacks requiring physical or local access to exploit are outside of the scope of this work. 
+We also assume an adversary who may be generally aware that the system is equipped with security countermeasures, but is unaware of the specifics of the NADIR system. We assume a typical attack lifecycle 
+consisting of repeated rounds of reconnaissance and exploitation, first to gain access to a network, then to penetrate more deeply into the system once initial access has been established. We consider 
+adversaries who can run any available tools to gain information about software and services installed on other network hosts. Once they are aware of a vulnerable service on the target server, they can use 
+other available exploits to attack the target through that service. 
+
+%Which this threat model, the NADIR system takes an action at the first place where the attackers scan the running services on the
+%server. The NADIR system hides the true information of running services then sends the decoy services' information back to the attackers. Thus, we can detect and catch the attackers who attack the
+%decoy services.

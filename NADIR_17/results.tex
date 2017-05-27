@@ -1,9 +1,8 @@
 \section{Results}
 \label{results}
 
-All experiments were performed on VMware workstation 12 on live development server with the configuration Intel(R) Core (TM) i7-6500U CPU @ 2.50GHz, 30GB HDD, 2GB RAM for all virtual machines, and the operating system platform is Ubuntu 14.04.5 LTS Desktop 64-bit.
-
-This section we divided into two part of evaluation: in first part we evaluate machine learning algorithm and its results for anomaly detection by Intrusion detection system and in the next part we focused on actual production and its results with snort experiment and attack detection and its respond. As summarized the java application converts decision tree into java program by taking J48 tree and the classified tree looks like Figure \ref{fig:J48tree}. Table \ref{table:J48result} and Figure \ref{fig:sum-roc} show the accurecy results of J48 algorithm and ROC curve for each type of traffic respectively.
+This section is divided into two parts. In the first, we evaluate the machine learning algorithm and its results for anomaly detection by Intrusion detection system. In the second, we
+focus on the overall NADIR system by using Snort to run an experiment in which network attacks are detected and response to with forged honey-service information. NADIR uses the J48 decision tree based learning algorithm to create Snort rules on the fly in response to previously observed network features. An example of a subsection of a classification tree is provided in Figure \ref{fig:J48tree}. Table \ref{table:J48result} and Figure \ref{fig:sum-roc} show the accuracy results of the J48 algorithm and ROC curve for each type of traffic.
 
 \begin{table*}
 \begin{center}
@@ -62,6 +61,13 @@ This section we divided into two part of evaluation: in first part we evaluate m
         \label{fig:sum-roc}
 \end{figure*}
 
-In second part, by evaluating snort system which generates snort rule and push them into existing snort configuration and restart snort service. Finally we got a whole working machine which works on J48 machine learning algorithm for detecting intrusion and generating snort rule in real-time and restart snort service with any packet loss. If it detects any attempt to exploit machine can respond by itself by dropping all incoming packets coming from attacker's IP. We uses one common rule for DOS and DDOS detection so machine can detect both of them but can't mitigate DDOS attack though it can detect successfully.
+We evaluated the end-to-end NADIR system which collects network features, uses them to generate Snort rules, and then pushes them into the configuration of an existing Snort service, which is then 
+restarted. This results in an overall system which uses the J48 machine learning algorithm to detect network anomalies. In response, it generates Snort rules dynamically and replaces  them without 
+incurring any lost packets. If NADIR detects any attempt to attack the machine, it can respond by taking action such as dropping incoming packets coming from the suspected attacker's IP address.
 
-In accuracy results, ROC- space shows area under the curve (AUC) is 98\% of accurate for Normal traffic. It classified Probe, R2L, Dos attacks with 99\%, 95\% and 98\% accurate results respectively. Here, ROC Curves can be used to evaluate the tradeoff between TP (true-positive) and FP (false-positive) rates of classification algorithm. We got some false prediction in which actual attack predicted as normal and same as some normal pattern classified as an attack and got some false alarm by the machine learning classifier. Dos results shows that there is 0.0 FP rate with the classification algorithms.
+%We use a common rule for DOS and DDOS detection so machine can detect both of them.
+
+We tested the complete NADIR system by launching attacks against a computer with it installed at known times to provide ground truth. We then calculated area under the ROC curve (AUC) values to evaluate 
+the tradeoff between true positive (TP) and false positive (FP) rates of our system. The AUC for detecting these attacks was 0.987 for Normal traffic. NADIR classified Probe, R2L, DoS attacks with AUC 
+values of 0.991, 0.950, and 0.980 respectively. Although some errors of both types were made by NADIR's classifier, rates were low; for example, the prediction results of DoS attacks show a 0\% false 
+positive rate.

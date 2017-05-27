@@ -1,6 +1,17 @@
 \section{Conclusion}
 \label{conclusion}
 
-This paper presented NADIR, a system for defending against network reconnaissance efforts. NADIR works by providing deceptive service information when suspicious network contexts are detected. As a part of this effort we created the tool to generate the dynamic Snort rules automatically by feeding dataset or network traffic. We first work on hiding the real running service information on the Victim and sending back the bogus information back to the Attacker. Then, we collected the dataset in two main different types of traffic which are legitimate and malicious packets. Next, we developed the application to extract features from captured packets and convert to the particular format. After we have the final datasets, we use them to feed our NADIR application to generate the dynamic Snort rules. NADIR learns and classifies the relational dataset by J48 decision tree algorithm then generates the Snort rules to detect the malicious pattern. Once Snort-IDS gets the updated rules, application keeps track snort logs and takes one more forward step to create the drop rules in my-drop.rules to drop network traffic from the specific source IP address which violates the alert rules as it detects threat real-time. 
+This paper presented NADIR, a system for defending against network reconnaissance efforts. NADIR works by providing deceptive service information when suspicious network contexts are detected. As a part of
+this effort we created a tool to generate Snort rules dynamically by observing network traffic in real time. NADIR is capable of hiding information pertaining to real running service and sending back decoy 
+information to potential adversaries when suspicious network circumstances are detected. As part of this effort, we collected a network intrusion dataset by observing legitimate traffic on our university 
+computer network and injecting real attack data. NADIR is capable of extracting features from observed network packets. As a proof of concept, we implemented NADIR using the J48 decision tree algorithm to 
+create an anomaly based IDS, though NADIR is flexible enough to support any approach to intrusion detection. Our experimental results demonstrate that NADIR is capable of providing decoy service information 
+as a mitigation strategy to defend against real attacks.
+
+%then generates the Snort rules to detect the malicious pattern. Once Snort-IDS gets the updated rules, application keeps 
+%track Snort logs and takes one more forward step to create the drop rules in my-drop.rules to drop network traffic from the specific source IP address which violates the alert rules as it detects threat 
+%real-time.
+
+%After we have the final datasets, we use them to feed our NADIR application to generate the dynamic Snort rules. 
 
 %In future work, we will use these techniques to improve the Intrusion Detection System such as identifying dynamically the types of attack in real-time.

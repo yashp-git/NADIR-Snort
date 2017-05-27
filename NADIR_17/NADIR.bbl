@@ -24,9 +24,6 @@
 \bibitem{misc:weka}
 Weka. Available at \url{http://www.cs.waikato.ac.nz/ml/weka/}.
 
-\bibitem{misc:snort}
-Snort. Available at \url{https://www.snort.org}.
-
 \bibitem{NetData2ARFF}
 N.~Khamphakdee, N.~Benjamas, and S.~Saiyod, ``Network traffic data to arff
   converter for association rules technique of data mining,'' pp. 89--93, Oct
@@ -101,15 +98,6 @@ Metasploitable. Available at
 \bibitem{misc:metasploitScripts}
 ``Metasploit scripts,''
   \url{https://www.offensive-security.com/metasploit-unleashed/existing-scripts/}.
-
-\bibitem{anomaly-basedNID}
-\BIBentryALTinterwordspacing
-P.~Garc\'{\i}a-Teodoro, J.~D\'{\i}az-Verdejo, G.~Maci\'{a}-Fern\'{a}ndez, and
-  E.~V\'{a}zquez, ``Anomaly-based network intrusion detection: Techniques,
-  systems and challenges,'' \emph{Comput. Secur.}, vol.~28, no. 1-2, pp.
-  18--28, Feb. 2009. [Online]. Available:
-  \url{http://dx.doi.org/10.1016/j.cose.2008.08.003}
-\BIBentrySTDinterwordspacing
 
 \bibitem{misc:wekaTutorial}
 S.~S. Aksenova, ``Machine learning with weka weka explorer tutorial for weka
